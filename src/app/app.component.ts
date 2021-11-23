@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import {Employee,Skill} from './models/employee';
 import { EmployeeService } from './services/employee.service';
+declare var jQuery:any;
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,8 @@ import { EmployeeService } from './services/employee.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  constructor(private employeeService: EmployeeService) { }
   
   //Default variables
   savingEmployee: boolean = false;
@@ -19,6 +22,9 @@ export class AppComponent {
   filterSkill: string = "";
   filterYear: string = "";
   totalRecords: number | undefined;
+
+  //Bootstrap modal variable
+  @ViewChild('employeeModal') employeeModal: any;
 
   
   //Countries List
@@ -34,6 +40,54 @@ export class AppComponent {
       endYear++;
     }
     return yearsArray;
+  }
+
+  //add new empoyee button trigger
+  addNewEmployee() {
+    //set new employee defaults
+    this.employee = <Employee>{
+      id: 'new'
+    };
+
+    this.employee.skills = [];
+
+    //Show modal
+    jQuery(this.employeeModal.nativeElement).modal('show');
+  }
+
+  //Save employee 
+  @ViewChild('firstName') firstName: any;
+  @ViewChild('lastName') lastName: any;
+  @ViewChild('telephone') telephone: any;
+  saveEmployee(): boolean {
+    if(!this.savingEmployee){
+      this.savingEmployee = true;
+
+      //Add new record id='new' else call the update request
+      if(this.employee?.id=='new'){
+        this.employeeService.insert(this.employee).subscribe(new_employee => {
+          this.savingEmployee = false;
+          if(new_employee){
+            //close Modal & reset the loading indicator
+            jQuery(this.employeeModal.nativeElement).modal('hide');
+
+            //Add the new record to the list of employees
+            this.employees.push(new_employee);
+
+            //Update the total records count
+            this.totalRecords = Number(this.totalRecords)+1;
+          }
+        });
+      }else{
+        if(this.employee){
+          //update code comes here
+        }
+      }
+
+      return true;
+    }else{
+      return false;
+    }
   }
 
 }

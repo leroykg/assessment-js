@@ -40,7 +40,7 @@
       </div>
       <div class="btn-group">
         <!-- Add new employee button -->
-        <button type="button" class="btn btn-primary add_btn"><span class="material-icons-outlined float-start me-1">
+        <button type="button" class="btn btn-primary add_btn"  (click)="addNewEmployee()"><span class="material-icons-outlined float-start me-1">
           add_circle
           </span>New Employee</button>
       </div>
@@ -202,8 +202,8 @@
             <span>Delete</span>
           </button>
 
-          <button type="button" [disabled]="savingEmployee" class="btn btn-block btn-primary">
-            <span *ngIf="!savingEmployee">Save changes</span>
+          <button type="button" (click)="saveEmployee()" [disabled]="savingEmployee" class="btn btn-block btn-primary">
+            <span *ngIf="!savingEmployee">Save</span>
             <span *ngIf="savingEmployee">Loading...</span>
           </button>
         </div>
