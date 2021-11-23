@@ -49,7 +49,7 @@
 
   <!-- a list of all employees -->
   <ul id="list">
-    <li *ngFor="let employee of employees; let i = index">
+    <li *ngFor="let employee of employees; let i = index" (click)="editEmployee(employee)">
       <div class="row">
         <div class="col-sm-1"><span class="number">{{i+1}}</span></div>
         <div class="col-sm-3">{{ employee.firstName }}</div>

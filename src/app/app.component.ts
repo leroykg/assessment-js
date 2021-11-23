@@ -80,7 +80,18 @@ export class AppComponent {
         });
       }else{
         if(this.employee){
-          //update code comes here
+          this.employeeService.update(this.employee).subscribe(updated_employee => {
+            this.savingEmployee = false;
+            if(updated_employee){
+              //close Modal & reset the loading indicator
+              jQuery(this.employeeModal.nativeElement).modal('hide');
+              
+              //updat th record in DOM
+              if(this.selectedEmployeeIndex!=undefined && this.selectedEmployeeIndex>=0){
+                this.employees[this.selectedEmployeeIndex] = updated_employee;
+              }
+            }
+          });
         }
       }
 
@@ -88,6 +99,13 @@ export class AppComponent {
     }else{
       return false;
     }
+  }
+
+  //show the edit employee Modals
+  editEmployee(employee: Employee) {
+    this.selectedEmployeeIndex = this.employees?.indexOf(employee)!;
+    this.employee = Object.assign({}, employee);
+    jQuery(this.employeeModal.nativeElement).modal('show');
   }
 
   //Show the results after fetching them the server
