@@ -101,6 +101,13 @@ export class AppComponent {
     }
   }
 
+   //Add new skill
+   addNewSkill(){
+    this.employee?.skills.push(<Skill>{
+      seniorityRating: 'Entry-level'
+    });
+  }
+
   //show the edit employee Modals
   editEmployee(employee: Employee) {
     this.selectedEmployeeIndex = this.employees?.indexOf(employee)!;
