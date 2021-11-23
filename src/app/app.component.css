@@ -1,0 +1,40 @@
+/* List view of employees  */
+#list{ margin: 0; padding: 0;}
+#list li{cursor: pointer; margin: 0; padding: 0; list-style: none; background-color: #767070; padding: 10px; border-radius: 5px; margin-bottom: 15px; color: #fff;}
+#list li .number{ display:block; text-align: center; border: solid 1px #fff; width: 30px; height: 30px; border-radius: 100px;}
+#list li:hover{ background-color: #6F6A6A; }
+
+
+/* Animate the no results */
+@-webkit-keyframes scale-up-center {
+  0% { -webkit-transform: scale(0.8); transform: scale(0.8); }
+  100% { -webkit-transform: scale(1); transform: scale(1); }
+}
+
+@keyframes scale-up-center {
+  0% { -webkit-transform: scale(0.8); transform: scale(0.8); }
+  100% {  -webkit-transform: scale(1); transform: scale(1); }
+}
+
+.scale-up-center { -webkit-animation: scale-up-center 1s 1s infinite alternate forwards; animation: scale-up-center 1s 1s infinite alternate forwards; }
+
+/* Employee Modal  */
+#employee_modal .modal-content, #delete_employee_modal .modal-content{ background-color: #242335;}
+#employee_modal .modal-header, #delete_employee_modal .modal-header{ border-bottom: none;}
+#employee_modal .btn-close, #delete_employee_modal .btn-close{ background-color: #fff;}
+#employee_modal .modal-footer, #delete_employee_modal .modal-footer{ border-top: none;}
+#employee_modal .form-control,#employee_modal .form-select, #employee_modal .add_new_skill_btn{ background-color: #767070; border: none; color: #fff;}
+#employee_modal .modal-body h3{ border-top: solid 1px #999; padding-top: 15px; margin-top: 15px; font-size: 18px; font-weight: bold;}
+#employee_modal .modal-body th,#employee_modal .modal-body td{  color: #fff;}
+#employee_modal .delete_btn{ color: #fff;}
+
+/* Delete employee modal */
+#delete_employee_modal .btn{ color: #fff;}
+
+/* Top Section */
+.top_section{ padding-top: 50px; padding-bottom: 30px;;}
+.top_section h1{ margin: 0; padding: 0;}
+.top_section .search{ color: #fff; border: solid 1px #666; background-color: transparent;}
+.top_section .add_btn{ margin-left: 15px!important; border-radius: 100px!important;}
+.top_section .filter_btn{ margin-left: 15px; border-radius: 100px;}
+.top_section .dropdown-menu{ width: 300px;}
