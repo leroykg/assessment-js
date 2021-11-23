@@ -170,11 +170,24 @@ export class AppComponent {
     this.showLoadingIndicator = false;
     this.employees = response.data;
     this.totalRecords = response.total;
+
+    //store in local storage
+    localStorage.setItem('results', JSON.stringify(response));
   }
 
   //Get employees
   getEmployees(): void {
-    this.showLoadingIndicator = true;
+
+    //get the locally saved 
+    let savedEmployees = JSON.parse(localStorage.getItem('results') || '{}');
+    
+    if(savedEmployees){
+      this.showNewResults(savedEmployees);
+    }else{
+      this.showLoadingIndicator = true;
+    }
+
+    //Get the latest results from server
     this.employeeService.get({search: "", skill: "", yearOfBirth: ""}).subscribe(response  => {
         this.showNewResults(response);
       }
