@@ -108,6 +108,14 @@ export class AppComponent {
     });
   }
 
+  //Delete a skill
+  deleteSkill(selectedSkill:Skill){
+    const index: number = this.employee?.skills.indexOf(selectedSkill)!;
+    if (index !== -1) {
+      this.employee?.skills.splice(index,1);
+    }
+  }
+
   //show the edit employee Modals
   editEmployee(employee: Employee) {
     this.selectedEmployeeIndex = this.employees?.indexOf(employee)!;
