@@ -113,6 +113,17 @@ export class AppComponent {
     );
   }
 
+  //search 
+  search(): void {
+    this.showLoadingIndicator = true;
+    this.employees = [];
+
+    this.employeeService.get({search: this.searchKeyWord, skill: this.filterSkill, yearOfBirth: this.filterYear}).subscribe(response  => {
+        this.showNewResults(response);
+      }
+    );
+  }
+
   //Add new skill
   addNewSkill(){
     this.employee?.skills.push(<Skill>{

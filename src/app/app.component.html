@@ -7,7 +7,7 @@
     </div>
     <div class="col-sm-4 col-md-5">
       <!-- Seach by keyword -->
-      <form>
+      <form  (ngSubmit)="search()">
         <input type="text" name="searchKeyWord" placeholder="Search" [(ngModel)]="searchKeyWord" class="search form-control">
       </form>
     </div>
