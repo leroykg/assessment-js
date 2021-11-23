@@ -1,0 +1,1 @@
+.error_message{ position: fixed; color: #000; bottom: 30px; right: 30px; border-radius: 5px; background-color: #fff; border-left: solid 5px #f90; padding: 10px; z-index: 2000;  }

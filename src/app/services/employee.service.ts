@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient,HttpParams, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import {Employee,Skill} from '../models/employee';
+import {Employee} from '../models/employee';
+import { ErrorMessagesService } from './error-messages.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +16,16 @@ export class EmployeeService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private ErrorMessagesService: ErrorMessagesService) { }
+
+  private log(message: string) {
+    this.ErrorMessagesService.add(`${message}`);
+  }
 
   //Handle Error but still need to a service for error displaying
   private handleError<T>( result?: T) {
     return (response: any): Observable<T> => {
-      //error handling service comes here
+      this.log(response.error.error);
       return of(result as T);
     };
   }
