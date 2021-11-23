@@ -103,8 +103,18 @@ export class AppComponent {
     }
   }
 
-   //Add new skill
-   addNewSkill(){
+  //Filter items
+  applyFilters(){
+    this.showLoadingIndicator = true;
+    this.employees = [];
+    this.employeeService.get({search: this.searchKeyWord,skill: this.filterSkill, yearOfBirth: this.filterYear}).subscribe(response  => {
+        this.showNewResults(response);
+      }
+    );
+  }
+
+  //Add new skill
+  addNewSkill(){
     this.employee?.skills.push(<Skill>{
       seniorityRating: 'Entry-level'
     });
