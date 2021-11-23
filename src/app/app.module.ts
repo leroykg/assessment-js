@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
+import { DpDatePickerModule } from 'ng2-date-picker';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ErrorMessageComponent } from './components/error-message/error-message.
   imports: [
     FormsModule,
     HttpClientModule,
+    DpDatePickerModule,
     BrowserModule,
     AppRoutingModule
   ],
