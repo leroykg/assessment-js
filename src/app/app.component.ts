@@ -90,4 +90,25 @@ export class AppComponent {
     }
   }
 
+  //Show the results after fetching them the server
+  showNewResults(response: any): void{
+    this.showLoadingIndicator = false;
+    this.employees = response.data;
+    this.totalRecords = response.total;
+  }
+
+  //Get employees
+  getEmployees(): void {
+    this.showLoadingIndicator = true;
+    this.employeeService.get({search: "", skill: "", yearOfBirth: ""}).subscribe(response  => {
+        this.showNewResults(response);
+      }
+    );
+  }
+
+
+  ngOnInit(): void {
+    this.getEmployees();
+  }
+
 }
