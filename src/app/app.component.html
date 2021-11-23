@@ -198,13 +198,39 @@
     
         </div>
         <div class="modal-footer" *ngIf="employee">
-          <button type="button" [disabled]="savingEmployee" class="btn btn-block btn-danger">
+          <button type="button" (click)="showDeleteEmployeeModal()" [disabled]="savingEmployee" class="btn btn-block btn-danger">
             <span>Delete</span>
           </button>
 
           <button type="button" (click)="saveEmployee()" [disabled]="savingEmployee" class="btn btn-block btn-primary">
             <span *ngIf="!savingEmployee">Save</span>
             <span *ngIf="savingEmployee">Loading...</span>
+          </button>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Delete Employee Modal -->
+  <div class="modal fade" #deleteEmployeeModal id="delete_employee_modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content"  *ngIf="employee">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">
+            Delete employee?
+          </h5>
+          <button type="button" class="btn-close" #closebutton data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body text-center">
+            <p>Are you sure you want to delete this record?</p>
+            <p><strong>"{{ employee.firstName }} {{ employee.lastName }} - {{ employee.uniqueId }}"</strong></p>
+        </div>
+        <div class="modal-footer" *ngIf="employee">
+          <button type="button" (click)="deleteEmployee(employee)" [disabled]="deletingEmployee" class="btn btn-block btn-danger">
+            <span *ngIf="!deletingEmployee">Delete</span>
+            <span *ngIf="deletingEmployee">Loading...</span>
           </button>
         </div>
       

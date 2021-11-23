@@ -22,9 +22,11 @@ export class AppComponent {
   filterSkill: string = "";
   filterYear: string = "";
   totalRecords: number | undefined;
+  deletingEmployee: boolean = false;
 
-  //Bootstrap modal variable
+  //Bootstrap modal variables
   @ViewChild('employeeModal') employeeModal: any;
+  @ViewChild('deleteEmployeeModal') deleteEmployeeModal: any;
 
   
   //Countries List
@@ -113,6 +115,25 @@ export class AppComponent {
     const index: number = this.employee?.skills.indexOf(selectedSkill)!;
     if (index !== -1) {
       this.employee?.skills.splice(index,1);
+    }
+  }
+
+  //Show modal to confirm deleting of an employee
+  showDeleteEmployeeModal(){
+    jQuery(this.employeeModal.nativeElement).modal('hide');
+    jQuery(this.deleteEmployeeModal.nativeElement).modal('show');
+  }
+
+  //delete employee
+  deleteEmployee(employee: Employee) {
+    if(this.employee?.id){
+      this.employeeService.delete(this.employee).subscribe(deleted_employee => {
+        var itemIndex = this.selectedEmployeeIndex;
+        if (itemIndex !== -1) {
+          this.employees.splice(itemIndex,1)!;
+        }
+        jQuery(this.deleteEmployeeModal.nativeElement).modal('hide');
+      });
     }
   }
 
